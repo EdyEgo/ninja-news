@@ -29,7 +29,7 @@ const SearchNews: React.FC<SearchNewsProps> = ({visible}) => {
 
     return ( <>
     
-    <SearchHelper visible={visible} valueInput={serachInputValue}  redirectOnClick={redirectUserToSearchedTopic} setSearchInputValue={setSerachInputValueInStore}/>
+    <SearchHelper visible={visible}  redirectOnClick={redirectUserToSearchedTopic} setSearchInputValue={setSerachInputValueInStore}/>
     </> );
 }
  

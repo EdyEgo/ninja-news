@@ -1,17 +1,17 @@
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {useState} from 'react'
+
 import SearchIcon from '@mui/icons-material/Search';
 
 
 
 
-export default function SearchInput({visible,valueInput,redirectOnClick,setSearchInputValue}:{visible:boolean,valueInput:string,redirectOnClick:()=>void,setSearchInputValue:(inputValue:string)=>void}) {
+export default function SearchInput({visible,redirectOnClick,setSearchInputValue}:{visible:boolean,redirectOnClick:()=>void,setSearchInputValue:(inputValue:string)=>void}) {
     const visibility = visible ? "visible" : 'pointer-events-none invisible'
    
   
-    const inputIsValid = valueInput != null ? valueInput : ""
+  
  
 
   
