@@ -1,7 +1,7 @@
 import {createSlice } from '@reduxjs/toolkit'
 
 const initialState:{news:any[]} = {
-   news:[]
+   news:[],
 } 
 
 
@@ -17,6 +17,7 @@ export const newsSlice = createSlice({
         addNews:(state,action)=>{
             state.news = action.payload
         }, 
+    
 
      
       

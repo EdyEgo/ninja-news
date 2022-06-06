@@ -7,6 +7,8 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
+import ChangeView from './changeDisplayFilter'
+import SwitchDate from './changeDateFilter'
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -78,23 +80,24 @@ export default function MenuListComposition({
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem
-                      onClick={async (event) => {
-                        // action here
-                        handleClose(event);
-                      }}
+                    <div className="flex justify-between items-center gap-4 p-2"
+                     
                     >
-                     Show news :
-                    </MenuItem>
+                     <div className="title">
+                        Show news :
+                     </div>
+                     <ChangeView/>
+                    </div>
 
-                    <MenuItem
-                      onClick={async (event) => {
-                        // action here
-                        handleClose(event);
-                      }}
+                    <div className="flex justify-between gap-4 p-2"
+                     
                     >
-                     SortAfter:
-                    </MenuItem>
+                 
+                     <div className="title">
+                       Sort by newest:
+                     </div>
+                     <SwitchDate/>
+                    </div>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

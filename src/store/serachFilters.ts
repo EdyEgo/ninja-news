@@ -1,7 +1,9 @@
 import {createSlice } from '@reduxjs/toolkit'
 
-const initialState:{searchInput:boolean} = {
-    searchInput:false
+const initialState:{searchInput:boolean,newsViewCardMode:boolean,sortByNewest:boolean} = {
+    searchInput:false,
+    newsViewCardMode:false,// if false then is list
+    sortByNewest:false
 } 
 
 
@@ -10,20 +12,25 @@ const initialState:{searchInput:boolean} = {
 
 
 export const searchFiltersSlice = createSlice({
-    name:'searchInput',
+    name:'searchFilters',
     initialState,
     reducers:{
+        changeSortByNewest:(state)=>{
+            state.sortByNewest = !state.sortByNewest
+        },
 
         changeSearchInputOpenStatus:(state)=>{
             state.searchInput = !state.searchInput
         }, 
-
+        changeNewsViewMode:(state)=>{
+            state.newsViewCardMode = !state.newsViewCardMode
+        }
      
       
     },
 
 })
 
-export const { changeSearchInputOpenStatus } = searchFiltersSlice.actions
+export const { changeSortByNewest,changeSearchInputOpenStatus,changeNewsViewMode } = searchFiltersSlice.actions
 
 export default searchFiltersSlice.reducer
