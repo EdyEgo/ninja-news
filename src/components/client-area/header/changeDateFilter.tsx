@@ -1,4 +1,4 @@
-import Switch from './switchFilter'
+import Switch from '../helpers/switchFilter'
 import {useSelector,useDispatch} from 'react-redux'
 import {changeSortByNewest} from '../../../store/serachFilters'
 

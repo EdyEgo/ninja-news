@@ -3,16 +3,13 @@ import ClientArea from './components/client-area'
 
 
 import './App.css';
-import { useDispatch } from "react-redux";
 
-
-import "./styles/signButtons.css";
 
 
 function App() {
 
 
- const dispatch = useDispatch()
+
 
 
   return (
