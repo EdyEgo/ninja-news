@@ -51,12 +51,12 @@ export default function TablePaginationDemo() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
   const formatPage = parseInt(event.target.value, 10)
-  const {finishIndex,startIndex} = calculateStartAndFinishAt(page,formatPage)
+
        changeRowsPerPage(formatPage)
 
      
      
-       dispatch(changeLastLoadedItemIndex({finishIndex:formatPage,startIndex}))
+       dispatch(changeLastLoadedItemIndex({finishIndex:formatPage,startIndex:0}))
   };
 
   return (

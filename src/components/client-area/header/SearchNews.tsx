@@ -1,8 +1,9 @@
 import SearchHelper from '../helpers/Search'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
+import ChangeDatePicker from './DatePicker'
 
-import {changeSearchInputValue} from '../../../store/serachFilters'
+import {changeSearchInputValue,addIncrementTimes} from '../../../store/serachFilters'
 import {useSelector} from 'react-redux'
 
 
@@ -18,9 +19,13 @@ const SearchNews: React.FC<SearchNewsProps> = ({visible}) => {
 
     function redirectUserToSearchedTopic(){
         const trimedLowerCaseInputValue = serachInputValue.toLowerCase().trim()
+        if(trimedLowerCaseInputValue === "") return
         dispatch(changeSearchInputValue(trimedLowerCaseInputValue))// add input value to the store
+        dispatch(addIncrementTimes())
         // navigate(`/search?query=${trimedLowerCaseInputValue}`) 
-        navigate('/search') // redirect the user 
+        // navigate('/search') // redirect the user  
+
+
     }
 
     function setSerachInputValueInStore(inputValue:string){

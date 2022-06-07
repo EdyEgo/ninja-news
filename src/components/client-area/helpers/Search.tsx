@@ -32,7 +32,7 @@ export default function SearchInput({visible,redirectOnClick,setSearchInputValue
       <TextField 
       InputProps={{
         startAdornment: (
-          <SearchIcon fontSize='small' className='cursor-pointer mx-1 text-blue-900 hover:text-blue-600 transition-all ease' onClick={()=>{redirectOnClick()}}/>
+          <SearchIcon fontSize='small' className='cursor-pointer z-50 mx-1 text-blue-900 hover:text-blue-600 transition-all ease' onClick={()=>{redirectOnClick()}}/>
         ),
       }}
        onKeyUp={(event:any)=>{setSearchInputValue(event.target.value)}} id="standard-basic" variant="standard" className='m-0 p-0'/>

@@ -7,8 +7,9 @@ import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import {useDispatch} from 'react-redux'
 import {changeSelectedDate} from '../../../store/serachFilters'
+import Box from '@mui/material/Box';
 
-export default function ViewsDatePicker() {
+export default function ViewsDatePicker({invisible}:{invisible:boolean}) {
     const dispatch = useDispatch()
   const [value, setValue] = React.useState<Date | null>(new Date());
  
@@ -18,22 +19,28 @@ export default function ViewsDatePicker() {
       dispatch(changeSelectedDate(formatDate))
       setValue(newValue);
   }
-
+ 
+  const invisibleClass = invisible ? "container mb-5 p-0 invisible pointer-events-none" : "container mb-5 p-0"
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Stack spacing={3}>
-        
-        <DatePicker
-          views={['day']}
-          label="Date"
-          value={value}
-          onChange={(newValue) => {
-            addSelectedDate(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
-        />
-      </Stack>
-    </LocalizationProvider>
+  
+    <div className={invisibleClass}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            label="Custom input"
+            value={value}
+            onChange={(newValue) => {
+              addSelectedDate(newValue);
+            }}
+            renderInput={({ inputRef, inputProps, InputProps }) => (
+              <Box sx={{}}>
+                <input ref={inputRef} {...inputProps}  className="invisible w-0 h-0 pointer-events-none"/>
+                {InputProps?.endAdornment}
+              </Box>
+            )}
+          />
+        </LocalizationProvider>
+    </div>
+ 
   );
 }

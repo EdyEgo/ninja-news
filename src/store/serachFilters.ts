@@ -1,6 +1,6 @@
 import {createSlice } from '@reduxjs/toolkit'
 
-const initialState:{searchInput:boolean,maxItemsPerPage:number,startIndex: number,finishIndex: number,searchInputValue:string | null,newsViewCardMode:boolean,selectedDate:null | string,sortByNewest:boolean} = {
+const initialState:{searchTimes:number,searchInput:boolean,maxItemsPerPage:number,startIndex: number,finishIndex: number,searchInputValue:string | null,newsViewCardMode:boolean,selectedDate:null | string,sortByNewest:boolean} = {
     searchInput:false,
     searchInputValue:"",
     newsViewCardMode:true,// if false then is list
@@ -8,7 +8,8 @@ const initialState:{searchInput:boolean,maxItemsPerPage:number,startIndex: numbe
     selectedDate:null,
     maxItemsPerPage:10,
     startIndex:0,
-    finishIndex:10
+    finishIndex:10,
+    searchTimes:0
 
 } 
 
@@ -23,6 +24,9 @@ export const searchFiltersSlice = createSlice({
     reducers:{
         changeMaxItemsPerPage:(state,{payload})=>{
             state.maxItemsPerPage = payload
+        },
+        addIncrementTimes:(state)=>{
+            state.searchTimes = state.searchTimes + 1
         },
         
         changeLastLoadedItemIndex:(state,{payload})=>{
@@ -57,6 +61,6 @@ export const searchFiltersSlice = createSlice({
 
 })
 
-export const { changeSelectedDate,changeMaxItemsPerPage,changeLastLoadedItemIndex,changeSortByNewest,changeSearchInputValue,changeSearchInputOpenStatus,changeNewsViewMode } = searchFiltersSlice.actions
+export const { changeSelectedDate,addIncrementTimes,changeMaxItemsPerPage,changeLastLoadedItemIndex,changeSortByNewest,changeSearchInputValue,changeSearchInputOpenStatus,changeNewsViewMode } = searchFiltersSlice.actions
 
 export default searchFiltersSlice.reducer

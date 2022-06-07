@@ -27,12 +27,14 @@ const CardContentNews: React.FC<CardContentProps> = ({cardItem,index}) => {
         sx={{  display: 'flex', flexDirection: 'column' }}
       >
           {cardItem.urlToImage !== null &&
-          <CardMedia
-          component="img"
-          
-          image={cardItem.urlToImage}
-          alt="random"
-        />
+              <a href={cardItem.url} className="">
+                <CardMedia
+              component="img"
+              
+              image={cardItem.urlToImage}
+              alt="article"
+            />
+           </a>
           }
         
             {cardItem.urlToImage === null &&<Skeleton sx={{ height: 190 }} animation={false} variant="rectangular" />}

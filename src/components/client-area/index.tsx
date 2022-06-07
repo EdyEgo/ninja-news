@@ -14,8 +14,7 @@ const ClientArea: React.FC<ClientAreaProps> = () => {
         </header>
 
         <Routes>
-          {/* <Route path="/" element={<div>ss</div>} /> */}
-         <Route path="/" element={<ClientHome/>}></Route>
+           <Route path="/" element={<ClientHome/>}></Route>
         </Routes>
       </Router>
     </>

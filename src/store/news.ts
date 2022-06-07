@@ -22,12 +22,14 @@ export const newsSlice = createSlice({
         addNews:(state,{payload})=>{
             const totalResults = payload.totalResults
             const sortbyNewest = payload.sortByNewest
+            const doNotStore = payload?.doNotStore
             const articles  =payload.articles
             state.articles = sortbyNewest ? articles.sort(sortFunction) : articles.sort(sortFunction)
             state.totalResults  = totalResults
           
          
             const date = moment(new Date()).format('YYYY/MM/DD');
+            if(doNotStore) return
             const news = {articles,totalResults,date}
            
             const stringifyNews = JSON.stringify(news)

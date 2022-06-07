@@ -1,5 +1,5 @@
-import {useEffect,useState} from 'react'
-import {getHeadLines} from '../../api/newsApiSauceGetters'
+import {useEffect,useState , useCallback} from 'react'
+import {getHeadLines,getSearchedNews} from '../../api/newsApiSauceGetters'
 import {useSelector,useDispatch} from 'react-redux'
 import {addNews} from '../../store/news'
 
@@ -15,13 +15,19 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
 
 
  const sortbyNewest = useSelector((state:any)=>state.searchFilters.sortByNewest)
+ const searchInputValue = useSelector((state:any)=>state.searchFilters.searchInputValue)
+ const selectedDate = useSelector((state:any)=>state.searchFilters.selectedDate)
+ const searchTimes = useSelector((state:any)=>state.searchFilters.searchTimes)// this one is here for the useEffect to trigger on change
+
+
+
 
  const [errorMsg,setErrorMsg] = useState<null | string>(null)
 
   useEffect(()=>{
     let isSubscribed = true;
 
-   async function getNews(){ 
+      async function getNews(){ 
 
     // so we don t call the headlines if the user enter multiple time in the same day
     const localStoreHeadlines = getHeadlinesFromLocalStorage()
@@ -42,23 +48,35 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
      
       }
 
-    if(isSubscribed ){
+      async function getSearchedArticles(){
+        
+        const news:any = await getSearchedNews({inputValue:searchInputValue,fromSelectedDate:selectedDate})
+
+        if(news?.errorMessage || news?.ok === false || news?.problem !== null){
+          setErrorMsg('Could not load your news , try again later!')
+          return 
+        }
+
+        console.log('got serached news',news)
+        dispatch(addNews({doNotStore:true,totalResults:news.data.totalResults,articles:news.data.articles,sortbyNewest:sortbyNewest}))
+      }
+
+    if(isSubscribed && searchInputValue === "" ){
          getNews()
+    }
 
-      
-     
-      
-
+    if(isSubscribed && searchInputValue !== ""){
+      getSearchedArticles()
     }
 
     return () => { //clean up
       isSubscribed = false;
     };
-  },[sortbyNewest])
+  },[sortbyNewest,searchTimes])
 
   return (
     <>
-      <div className="hero-container flex justify-center  mt-10 w-full" onScroll={(event)=>console.log('my scroll event is',event)}>
+      <div className="hero-container flex justify-center  mt-10 w-full" >
           {errorMsg !== null && <h1>{errorMsg}</h1>}
           {errorMsg === null && <NewsContainer/>}
       </div>
