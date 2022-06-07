@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import type {Article} from '../../../types/newsResult'
 import Skeleton from '@mui/material/Skeleton';
 import {useNavigate} from 'react-router-dom'
- 
+import moment from 'moment'
 
 
 
@@ -35,7 +35,7 @@ const CardContentNews: React.FC<CardContentProps> = ({cardItem,index}) => {
         />
           }
         
-            {cardItem.urlToImage === null &&<Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />}
+            {cardItem.urlToImage === null &&<Skeleton sx={{ height: 190 }} animation={false} variant="rectangular" />}
         <CardContent sx={{ flexGrow: 1 }}>
           
           <a href={cardItem.url} className="font-extrabold text-xl hover:text-gray-500 transition-all ease"> 
@@ -53,6 +53,9 @@ const CardContentNews: React.FC<CardContentProps> = ({cardItem,index}) => {
            By {cardItem.author}
           </div>
           }
+          <div className="published-at-date">
+              {moment(cardItem.publishedAt).fromNow() }
+          </div>
           </div>
         </CardContent>
        

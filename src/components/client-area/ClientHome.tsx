@@ -4,6 +4,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {addNews} from '../../store/news'
 import NewsContainer from './content/NewsContainer'
 import {getHeadlinesFromLocalStorage} from '../../composables/getHeadlinesLocalStorage'
+import Pagination from './footer/pagination'
 
 interface ClientHomeProps {}
 
@@ -12,18 +13,19 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
   const dispatch = useDispatch()
 
  const news  = useSelector((state:any)=>state.news.articles)
+ const sortbyNewest = useSelector((state:any)=>state.searchFilters.sortByNewest)
 
  const [errorMsg,setErrorMsg] = useState<null | string>(null)
 
   useEffect(()=>{
     let isSubscribed = true;
-
+console.log('i was called , ' , isSubscribed)
    async function getNews(){ 
 
     // so we don t call the headlines if the user enter multiple time in the same day
     const localStoreHeadlines = getHeadlinesFromLocalStorage()
-      if(localStoreHeadlines !== null){
-          dispatch(addNews({totalResults:localStoreHeadlines.totalResults,articles:localStoreHeadlines.articles}))
+      if(localStoreHeadlines !== null ){
+          dispatch(addNews({totalResults:localStoreHeadlines.totalResults,articles:localStoreHeadlines.articles,sortbyNewest:sortbyNewest}))
           console.log('got news from the localStorage',localStoreHeadlines)
           return 
       }
@@ -38,7 +40,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
     
       }
 
-    if(isSubscribed && news?.length < 1){
+    if(isSubscribed ){
          getNews()
 
       
@@ -50,13 +52,16 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
     return () => { //clean up
       isSubscribed = false;
     };
-  },[])
+  },[sortbyNewest])
 
   return (
     <>
-      <div className="hero-container flex justify-center  mt-10 w-full">
+      <div className="hero-container flex justify-center  mt-10 w-full" onScroll={(event)=>console.log('my scroll event is',event)}>
           {errorMsg !== null && <h1>{errorMsg}</h1>}
           {errorMsg === null && <NewsContainer/>}
+      </div>
+      <div className="pagination flex justify-center">
+           <Pagination/>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import moment from 'moment'
 import ListItem from '@mui/material/ListItem';
 
 
@@ -35,6 +35,10 @@ const ListItemLoaded: React.FC<ListItemLoadedProps> = ({cardItem,index}) => {
         <div className="text text-sm">
         {cardItem.description || cardItem.content}
         </div>
+
+        <div className="published-at-date">
+              {moment(cardItem.publishedAt).fromNow() }
+          </div>
     </div>
   </ListItem> );
 }

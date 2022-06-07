@@ -100,15 +100,15 @@ export default function MenuListComposition({
                      <SwitchDate/>
                     </div> 
 
-                    <div className="flex flex-col justify-between gap-4 p-2"
-                     
+                    {/* <div className="flex flex-col justify-between gap-4 p-2"
+
                      >
                   
                       <div className="title">
                         Choose a day:
                       </div>
                       <DatePickerSelect/>
-                     </div>
+                     </div> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

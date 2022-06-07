@@ -8,7 +8,7 @@ interface ClientAreaProps {}
 const ClientArea: React.FC<ClientAreaProps> = () => {
   return (
     <>
-      <Router>
+      <Router >
         <header className="">
           <NavBar />
         </header>
