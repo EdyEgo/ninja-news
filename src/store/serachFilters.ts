@@ -1,13 +1,15 @@
 import {createSlice } from '@reduxjs/toolkit'
 
-const initialState:{searchInput:boolean,maxItemsPerPage:number,lastLoadedItemsIndex:number,searchInputValue:string | null,newsViewCardMode:boolean,selectedDate:null | string,sortByNewest:boolean} = {
+const initialState:{searchInput:boolean,maxItemsPerPage:number,startIndex: number,finishIndex: number,searchInputValue:string | null,newsViewCardMode:boolean,selectedDate:null | string,sortByNewest:boolean} = {
     searchInput:false,
     searchInputValue:"",
     newsViewCardMode:false,// if false then is list
     sortByNewest:false,
     selectedDate:null,
-    maxItemsPerPage:8,
-    lastLoadedItemsIndex:0
+    maxItemsPerPage:10,
+    startIndex:0,
+    finishIndex:10
+
 } 
 
 
@@ -19,9 +21,16 @@ export const searchFiltersSlice = createSlice({
     name:'searchFilters',
     initialState,
     reducers:{
+        changeMaxItemsPerPage:(state,{payload})=>{
+            state.maxItemsPerPage = payload
+        },
         
         changeLastLoadedItemIndex:(state,{payload})=>{
-           state.lastLoadedItemsIndex = payload
+           const startIndex = payload.startIndex
+           const finishIndex = payload.finishIndex
+
+           state.startIndex = startIndex
+           state.finishIndex = finishIndex
         },
 
         changeSelectedDate:(state,{payload})=>{
@@ -48,6 +57,6 @@ export const searchFiltersSlice = createSlice({
 
 })
 
-export const { changeSelectedDate,changeLastLoadedItemIndex,changeSortByNewest,changeSearchInputValue,changeSearchInputOpenStatus,changeNewsViewMode } = searchFiltersSlice.actions
+export const { changeSelectedDate,changeMaxItemsPerPage,changeLastLoadedItemIndex,changeSortByNewest,changeSearchInputValue,changeSearchInputOpenStatus,changeNewsViewMode } = searchFiltersSlice.actions
 
 export default searchFiltersSlice.reducer

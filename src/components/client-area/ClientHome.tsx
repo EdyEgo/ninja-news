@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react'
 import {getHeadLines} from '../../api/newsApiSauceGetters'
 import {useSelector,useDispatch} from 'react-redux'
 import {addNews} from '../../store/news'
+
 import NewsContainer from './content/NewsContainer'
 import {getHeadlinesFromLocalStorage} from '../../composables/getHeadlinesLocalStorage'
 import Pagination from './footer/pagination'
@@ -12,20 +13,21 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
  
   const dispatch = useDispatch()
 
- const news  = useSelector((state:any)=>state.news.articles)
+
  const sortbyNewest = useSelector((state:any)=>state.searchFilters.sortByNewest)
 
  const [errorMsg,setErrorMsg] = useState<null | string>(null)
 
   useEffect(()=>{
     let isSubscribed = true;
-console.log('i was called , ' , isSubscribed)
+
    async function getNews(){ 
 
     // so we don t call the headlines if the user enter multiple time in the same day
     const localStoreHeadlines = getHeadlinesFromLocalStorage()
       if(localStoreHeadlines !== null ){
           dispatch(addNews({totalResults:localStoreHeadlines.totalResults,articles:localStoreHeadlines.articles,sortbyNewest:sortbyNewest}))
+      
           console.log('got news from the localStorage',localStoreHeadlines)
           return 
       }
@@ -37,7 +39,7 @@ console.log('i was called , ' , isSubscribed)
       }
       console.log('got news from the api',news)
        dispatch(addNews({totalResults:news.data.totalResults,articles:news.data.articles}))// add headlines
-    
+     
       }
 
     if(isSubscribed ){
