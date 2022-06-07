@@ -54,7 +54,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
 
   return (
     <>
-      <div className="hero-container flex justify-center  mt-20">
+      <div className="hero-container flex justify-center  mt-10 w-full">
           {errorMsg !== null && <h1>{errorMsg}</h1>}
           {errorMsg === null && <NewsContainer/>}
       </div>

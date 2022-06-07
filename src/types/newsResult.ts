@@ -1,7 +1,7 @@
-export interface NewsResult{
-   status:string,
-   totalResults:number,
-   articles:{
+
+export interface Article{
+   
+ 
     source:{
         id:string | null,
         name:string
@@ -13,6 +13,23 @@ export interface NewsResult{
     urlToImage:string,
     publishedAt:string,
     content:string
+   
+}
 
-   }[]
+export interface NewsResult {
+    status:string,
+    totalResults:number,
+    articles:{
+     source:{
+         id:string | null,
+         name:string
+     },
+     author:string | null,
+     title:string,
+     description:string,
+     url:string,
+     urlToImage:string,
+     publishedAt:string,
+     content:string
+    }[]
 }

@@ -9,6 +9,7 @@ import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import ChangeView from './changeDisplayFilter'
 import SwitchDate from './changeDateFilter'
+import DatePickerSelect from './DatePicker' 
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -53,7 +54,7 @@ export default function MenuListComposition({
  
 
   return (
-    <Stack direction="row" spacing={4} className=" top-7 left-8 z-10">
+    <Stack  direction="row" spacing={4} className=" top-7 left-8 z-10 ">
       <div>
      
         <Popper
@@ -97,7 +98,17 @@ export default function MenuListComposition({
                        Sort by newest:
                      </div>
                      <SwitchDate/>
-                    </div>
+                    </div> 
+
+                    <div className="flex flex-col justify-between gap-4 p-2"
+                     
+                     >
+                  
+                      <div className="title">
+                        Choose a day:
+                      </div>
+                      <DatePickerSelect/>
+                     </div>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

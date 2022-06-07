@@ -9,7 +9,7 @@ interface NewsContainerProps {
 const NewsContainer: React.FC<NewsContainerProps> = () => {
     const viewCardMode = useSelector((state:any)=>state.searchFilters.newsViewCardMode)
     return ( 
-        <div className="news-container">
+        <div className="news-container mt-20">
              {viewCardMode && <CardsViewMode/>}
              {!viewCardMode && <ListViewMode/>}
         </div>

@@ -31,7 +31,7 @@ const ClientNavBar: React.FC<ClientNavBarProps> = () => {
 
     return (
       <>
-        <nav className="flex justify-around my-2 sticky border-b pb-4">
+        <nav className="flex justify-around my-2  border-b pb-4">
           <div
            
             className="logo-container flex justify-center items-center gap-2 "
