@@ -1,9 +1,19 @@
+import {useSelector} from 'react-redux'
+import CardsViewMode from './cardsViewMode'
+import ListViewMode from './listViewMode'
+
 interface NewsContainerProps {
     
 }
  
 const NewsContainer: React.FC<NewsContainerProps> = () => {
-    return ( <>new container</> );
+    const viewCardMode = useSelector((state:any)=>state.searchFilters.newsViewCardMode)
+    return ( 
+        <div className="news-container">
+             {viewCardMode && <CardsViewMode/>}
+             {!viewCardMode && <ListViewMode/>}
+        </div>
+     );
 }
  
 export default NewsContainer;

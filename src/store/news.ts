@@ -1,7 +1,8 @@
 import {createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
 
-const initialState:{news:any[]} = {
-   news:[],
+const initialState:{articles:any[],totalResults:number | null} = {
+    articles:[],totalResults:null
 } 
 
 
@@ -14,8 +15,19 @@ export const newsSlice = createSlice({
     initialState,
     reducers:{
 
-        addNews:(state,action)=>{
-            state.news = action.payload
+        addNews:(state,{payload})=>{
+            const totalResults = payload.totalResults
+            const articles  =payload.articles
+            state.articles = articles
+            state.totalResults  = totalResults
+          
+         
+            const date = moment(new Date()).format('YYYY/MM/DD');
+            const news = {articles,totalResults,date}
+           
+            const stringifyNews = JSON.stringify(news)
+
+            localStorage.setItem('headlines',stringifyNews)
         }, 
     
 

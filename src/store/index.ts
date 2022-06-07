@@ -7,7 +7,7 @@ import searchFiltersReducer from './serachFilters'
 export const store = configureStore({
     reducer:{
 
-        nes:newsReducer,
+        news:newsReducer,
         searchFilters:searchFiltersReducer
 
     }

@@ -31,7 +31,7 @@ const ClientNavBar: React.FC<ClientNavBarProps> = () => {
 
     return (
       <>
-        <nav className="flex justify-around my-2">
+        <nav className="flex justify-around my-2 sticky border-b pb-4">
           <div
            
             className="logo-container flex justify-center items-center gap-2 "
@@ -51,9 +51,9 @@ const ClientNavBar: React.FC<ClientNavBarProps> = () => {
                 {/* // made it this way because i don't have full controll over mui styles */}
               </div>
               
-              <div className="search text-blue-900 hover:text-blue-600 transition-all ease cursor-pointer">
+              <div className="search text-blue-900 hover:text-blue-600 transition-all ease cursor-pointer outline-none">
                     {!searchFiltersSearchStatus &&<SearchIcon fontSize='small' onClick={changeOpenSearchOfInputStatus}/>}
-                    {searchFiltersSearchStatus && <CloseSearchIcon fontSize='small' onClick={changeOpenSearchOfInputStatus} />}
+                    {searchFiltersSearchStatus && <CloseSearchIcon className="hover:text-red-400" fontSize='small' onClick={changeOpenSearchOfInputStatus} />}
               </div>
 
             

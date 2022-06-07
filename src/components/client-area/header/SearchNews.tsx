@@ -19,7 +19,8 @@ const SearchNews: React.FC<SearchNewsProps> = ({visible}) => {
     function redirectUserToSearchedTopic(){
         const trimedLowerCaseInputValue = serachInputValue.toLowerCase().trim()
         dispatch(changeSearchInputValue(trimedLowerCaseInputValue))// add input value to the store
-        navigate(`/search?query=${trimedLowerCaseInputValue}`) // redirect the user 
+        // navigate(`/search?query=${trimedLowerCaseInputValue}`) 
+        navigate('/search') // redirect the user 
     }
 
     function setSerachInputValueInStore(inputValue:string){
