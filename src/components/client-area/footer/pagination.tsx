@@ -8,7 +8,7 @@ export default function TablePaginationDemo() {
     const dispatch = useDispatch()
   const [page, setPage] = React.useState(0);
  
-  const maxItemsPerPage = useSelector((state:any)=>state.searchFilters.maxItemsPerPage)//rowsPerPage
+
   const articles =  useSelector((state:any)=>state.news.articles) // countPages
 
 
@@ -18,9 +18,9 @@ export default function TablePaginationDemo() {
 //   const totalPages = articles.length / rowsPerPage
  
 
-  function calculateStartAndFinishAt(newPage:number){
-    
-    const startIndex = rowsPerPage * newPage + 1 
+  function calculateStartAndFinishAt(newPage:number,rowsPerPageCustom?:number){
+ 
+    const startIndex = rowsPerPageCustom ?rowsPerPageCustom * newPage + 1  : rowsPerPage * newPage + 1 
     const finishIndex = startIndex + (rowsPerPage - 1)
    return {startIndex,finishIndex}
 
@@ -51,7 +51,12 @@ export default function TablePaginationDemo() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
   const formatPage = parseInt(event.target.value, 10)
+  const {finishIndex,startIndex} = calculateStartAndFinishAt(page,formatPage)
        changeRowsPerPage(formatPage)
+
+     
+     
+       dispatch(changeLastLoadedItemIndex({finishIndex:formatPage,startIndex}))
   };
 
   return (

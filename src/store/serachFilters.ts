@@ -3,7 +3,7 @@ import {createSlice } from '@reduxjs/toolkit'
 const initialState:{searchInput:boolean,maxItemsPerPage:number,startIndex: number,finishIndex: number,searchInputValue:string | null,newsViewCardMode:boolean,selectedDate:null | string,sortByNewest:boolean} = {
     searchInput:false,
     searchInputValue:"",
-    newsViewCardMode:false,// if false then is list
+    newsViewCardMode:true,// if false then is list
     sortByNewest:false,
     selectedDate:null,
     maxItemsPerPage:10,

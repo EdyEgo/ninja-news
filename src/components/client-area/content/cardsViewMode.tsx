@@ -15,7 +15,7 @@ export default function CardsViewMode() {
   
     const startAtIndex  = useSelector((state:any)=>state.searchFilters.startIndex)
     const finishAtIndex  = useSelector((state:any)=>state.searchFilters.finishIndex)
-    console.log('my items are',newsList)
+
 
     function loadCardsItems(){
         const storedCardItems = []
@@ -29,10 +29,10 @@ export default function CardsViewMode() {
                 <CardLoaded cardItem={card} index={cardIndex}/>
             </Grid>)
              lastIndex = cardIndex
-            // if(cardIndex + 1 >= maxItemsPerPage)break
+     
             
         }
-        // setTimeout(()=>dispatch(changeLastLoadedItemIndex(lastIndex)),100)// yup, thats a hack
+
         return storedCardItems
     }
    
