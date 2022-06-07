@@ -14,7 +14,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
   const dispatch = useDispatch()
 
 
- const sortbyNewest = useSelector((state:any)=>state.searchFilters.sortByNewest)
+ const sortbyNewestSelected = useSelector((state:any)=>state.searchFilters.sortByNewest)
  const searchInputValue = useSelector((state:any)=>state.searchFilters.searchInputValue)
  const selectedDate = useSelector((state:any)=>state.searchFilters.selectedDate)
  const searchTimes = useSelector((state:any)=>state.searchFilters.searchTimes)// this one is here for the useEffect to trigger on change
@@ -32,7 +32,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
     // so we don t call the headlines if the user enter multiple time in the same day
     const localStoreHeadlines = getHeadlinesFromLocalStorage()
       if(localStoreHeadlines !== null ){
-          dispatch(addNews({totalResults:localStoreHeadlines.totalResults,articles:localStoreHeadlines.articles,sortbyNewest:sortbyNewest}))
+          dispatch(addNews({totalResults:localStoreHeadlines.totalResults,articles:localStoreHeadlines.articles,sortByNewest:sortbyNewestSelected}))
       
           console.log('got news from the localStorage',localStoreHeadlines)
           return 
@@ -43,8 +43,8 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
         setErrorMsg('Could not load your news , try again later!')
         return 
       }
-      console.log('got news from the api',news)
-       dispatch(addNews({totalResults:news.data.totalResults,articles:news.data.articles}))// add headlines
+      console.log('got news from the api',news,sortbyNewestSelected)
+       dispatch(addNews({totalResults:news.data.totalResults,articles:news.data.articles,sortByNewest:sortbyNewestSelected}))// add headlines
      
       }
 
@@ -58,7 +58,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
         }
 
         console.log('got serached news',news)
-        dispatch(addNews({doNotStore:true,totalResults:news.data.totalResults,articles:news.data.articles,sortbyNewest:sortbyNewest}))
+        dispatch(addNews({doNotStore:true,totalResults:news.data.totalResults,articles:news.data.articles,sortByNewest:sortbyNewestSelected}))
       }
 
     if(isSubscribed && searchInputValue === "" ){
@@ -72,7 +72,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
     return () => { //clean up
       isSubscribed = false;
     };
-  },[sortbyNewest,searchTimes])
+  },[sortbyNewestSelected,searchTimes])
 
   return (
     <>

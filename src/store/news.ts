@@ -7,8 +7,10 @@ const initialState:{articles:any[],totalResults:number | null} = {
 
 
 function sortFunction(a:any,b:any){  
-    var dateA = new Date(a.date).getTime();
-    var dateB = new Date(b.date).getTime();
+  
+    var dateA = new Date(a.publishedAt).getTime();
+    var dateB = new Date(b.publishedAt).getTime();
+
     return dateA > dateB ? 1 : -1;  
 }; 
 
@@ -21,10 +23,12 @@ export const newsSlice = createSlice({
 
         addNews:(state,{payload})=>{
             const totalResults = payload.totalResults
-            const sortbyNewest = payload.sortByNewest
+            const sortbyNewestB = payload.sortByNewest
             const doNotStore = payload?.doNotStore
             const articles  =payload.articles
-            state.articles = sortbyNewest ? articles.sort(sortFunction) : articles.sort(sortFunction)
+        
+            state.articles = sortbyNewestB ? articles.sort(sortFunction) : articles
+           
             state.totalResults  = totalResults
           
          

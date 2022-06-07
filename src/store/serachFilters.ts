@@ -41,6 +41,7 @@ export const searchFiltersSlice = createSlice({
             state.selectedDate = payload
         },
         changeSortByNewest:(state)=>{
+           
             state.sortByNewest = !state.sortByNewest
         },
         changeSearchInputValue:(state,{payload})=>{
