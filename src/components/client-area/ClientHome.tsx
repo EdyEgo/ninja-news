@@ -1,4 +1,4 @@
-import {useEffect,useState , useCallback} from 'react'
+import {useEffect,useState } from 'react'
 import {getHeadLines,getSearchedNews} from '../../api/newsApiSauceGetters'
 import {useSelector,useDispatch} from 'react-redux'
 import {addNews} from '../../store/news'
@@ -72,7 +72,7 @@ const ClientHome: React.FC<ClientHomeProps> = () => {
     return () => { //clean up
       isSubscribed = false;
     };
-  },[sortbyNewestSelected,searchTimes])
+  },[sortbyNewestSelected,searchTimes,])
 
   return (
     <>

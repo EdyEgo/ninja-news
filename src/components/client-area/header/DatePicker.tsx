@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Stack from '@mui/material/Stack';
+
 import moment from 'moment';
 import {useDispatch} from 'react-redux'
 import {changeSelectedDate} from '../../../store/serachFilters'
@@ -29,7 +29,7 @@ export default function ViewsDatePicker({invisible}:{invisible:boolean}) {
           <DatePicker
             label="Custom input"
             value={value}
-            onChange={(newValue) => {
+            onChange={(newValue:any) => {
               addSelectedDate(newValue);
             }}
             renderInput={({ inputRef, inputProps, InputProps }) => (

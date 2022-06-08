@@ -5,7 +5,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import type {Article} from '../../../types/newsResult'
 import Skeleton from '@mui/material/Skeleton';
-import {useNavigate} from 'react-router-dom'
 import moment from 'moment'
 
 
@@ -17,11 +16,8 @@ interface CardContentProps {
  
 const CardContentNews: React.FC<CardContentProps> = ({cardItem,index}) => {
  
-    const navigate = useNavigate()
+    
 
-    function redirectUserToArticlePage(){
-            navigate(cardItem.url)
-    }
 
     return ( <Card key={index}
         sx={{  display: 'flex', flexDirection: 'column' }}

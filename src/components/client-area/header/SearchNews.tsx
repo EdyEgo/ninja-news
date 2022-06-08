@@ -1,7 +1,7 @@
 import SearchHelper from '../helpers/Search'
-import {useNavigate} from 'react-router-dom'
+
 import {useDispatch} from 'react-redux'
-import ChangeDatePicker from './DatePicker'
+
 
 import {changeSearchInputValue,addIncrementTimes} from '../../../store/serachFilters'
 import {useSelector} from 'react-redux'
@@ -12,7 +12,7 @@ interface SearchNewsProps {
 }
  
 const SearchNews: React.FC<SearchNewsProps> = ({visible}) => {
-    const navigate = useNavigate()   
+ 
     const dispatch = useDispatch()
  
     const serachInputValue  = useSelector((state:any)=>state.searchFilters.searchInputValue)

@@ -1,17 +1,17 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
-import MenuItem from "@mui/material/MenuItem";
+
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import ChangeView from './changeDisplayFilter'
 import SwitchDate from './changeDateFilter'
-import DatePickerSelect from './DatePicker' 
 
-import { useSelector, useDispatch } from "react-redux";
+
+
 
 
 
@@ -28,8 +28,8 @@ export default function MenuListComposition({
  
 
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (

@@ -5,11 +5,11 @@ import Container from '@mui/material/Container';
 import CardLoading from './CardLoading'
 import CardLoaded from './CardContent'
 
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 
 export default function CardsViewMode() {
-    const dispatch = useDispatch()
+  
     const cardsLoading = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const newsList = useSelector((state:any)=>state.news.articles)
   
@@ -19,7 +19,7 @@ export default function CardsViewMode() {
 
     function loadCardsItems(){
         const storedCardItems = []
-        let lastIndex = 0
+      
         
         for(let cardIndex = startAtIndex; cardIndex < finishAtIndex;cardIndex++){
             const card = newsList[cardIndex]
@@ -28,7 +28,7 @@ export default function CardsViewMode() {
             storedCardItems.push(  <Grid item key={cardIndex} xs={12} sm={17} md={6}>
                 <CardLoaded cardItem={card} index={cardIndex}/>
             </Grid>)
-             lastIndex = cardIndex
+            
      
             
         }
