@@ -29,7 +29,7 @@ export default function SearchInput({visible,redirectOnClick,setSearchInputValue
       autoComplete="off"
     >
 
-      <TextField 
+      <TextField  
       InputProps={{
         startAdornment: (
           <SearchIcon fontSize='small' className='cursor-pointer z-50 mx-1 text-blue-900 hover:text-blue-600 transition-all ease' onClick={()=>{redirectOnClick()}}/>
